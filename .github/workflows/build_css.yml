@@ -42,6 +42,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        mv artifact/twemoji-amazing.css twemoji-amazing.css
         commit=`git rev-list HEAD --count`
         hash=`git rev-parse HEAD`
         gh release create 1.$commit twemoji-amazing.css --target $hash -t 1.$commit
