@@ -19,3 +19,12 @@ jobs:
 
     - name: Execute Gradle build
       run: ./gradlew build
+
+    - name: Push update
+      run: |
+        time=`date '+%Y-%m-%d %H:%M:%S %A (%Z %z)'`
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name  "github-actions[bot]"
+        git add twemoji-amazing.css
+        git commit -m "Update twemoji - $time" || true
+        git push origin || true
