@@ -20,7 +20,13 @@ jobs:
     - name: Execute Gradle build
       run: ./gradlew run
 
-    - name: Push update
+   - name: Push emoji stylesheet artifact
+     uses: actions/upload-artifact@v3
+     with:
+       path: twemoji-amazing.css
+
+    - name: Push emoji stylesheet to repository
+      if: github.event_name == 'workflow_dispatch'
       run: |
         time=`date '+%Y-%m-%d %H:%M:%S %A (%Z %z)'`
         ls -R
