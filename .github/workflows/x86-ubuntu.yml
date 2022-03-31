@@ -29,9 +29,9 @@ jobs:
         path: twemoji-amazing.css
 
   push_release:
-    if: |
-      github.event_name == 'workflow_dispatch' &&
-      github.repository == 'SebastianAigner/twemoji-amazing'
+    #if: |
+      #github.event_name == 'workflow_dispatch' &&
+      #github.repository == 'SebastianAigner/twemoji-amazing'
     needs: build_css
     runs-on: ubuntu-latest
 
