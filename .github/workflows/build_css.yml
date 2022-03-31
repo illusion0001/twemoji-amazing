@@ -27,7 +27,7 @@ jobs:
 
   push_release:
     if: github.event_name == 'workflow_dispatch'
-      needs: build
+      needs: build_css
 
       runs-on: ubuntu-latest
       steps:
