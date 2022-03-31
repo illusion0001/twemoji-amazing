@@ -34,13 +34,18 @@ jobs:
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
+
     - name: Download artifacts
       uses: actions/download-artifact@v3
+
     - name: Push release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        commit=`git rev-list HEAD --count`
+        hash=`git rev-parse HEAD`
         gh release create 1.$commit twemoji-amazing.css --target $hash -t 1.$commit
+
     - name: Push emoji stylesheet to repository
       if: |
         github.event_name == 'workflow_dispatch' &&
