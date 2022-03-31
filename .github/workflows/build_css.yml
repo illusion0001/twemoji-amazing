@@ -25,7 +25,7 @@ jobs:
       with:
         path: twemoji-amazing.css
 
-    push_release:
+  push_release:
       needs: build_css
       runs-on: ubuntu-latest
       steps:
