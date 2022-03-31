@@ -18,7 +18,10 @@ jobs:
       uses: gradle/gradle-build-action@v2
 
     - name: Execute Gradle build
-      run: ./gradlew run
+      run: |
+        ./gradlew run
+        ./gradlew assemble testClasses -Pkotlin.incremental=false --no-daemon
+        ./gradlew check -Pkotlin.incremental=false --no-daemon
 
     - name: Push emoji stylesheet artifact
       uses: actions/upload-artifact@v3
