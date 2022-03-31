@@ -44,7 +44,7 @@ jobs:
     - name: Push emoji stylesheet to repository
       if: |
     - name: Download artifacts
-       uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v3
     - name: Push release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
