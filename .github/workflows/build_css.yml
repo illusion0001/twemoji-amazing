@@ -29,31 +29,31 @@ jobs:
    # if: github.event_name == 'workflow_dispatch'
     needs: build_css
 
-      runs-on: ubuntu-latest
-      steps:
+    runs-on: ubuntu-latest
+    steps:
 
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+  - name: Checkout
+    uses: actions/checkout@v3
+    with:
+      fetch-depth: 0
 
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
+  - name: Download artifacts
+    uses: actions/download-artifact@v3
 
-      - name: Push release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release create 1.$commit twemoji-amazing.css --target $hash -t 1.$commit
+  - name: Push release
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   run: |
+     gh release create 1.$commit twemoji-amazing.css --target $hash -t 1.$commit
 
-      - name: Push emoji stylesheet to repository
-        if: |
-          github.event_name == 'workflow_dispatch' &&
-          github.repository == 'SebastianAigner/twemoji-amazing'
-        run: |
-          time=`date '+%Y-%m-%d %H:%M:%S %A (%Z %z)'`
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name  "github-actions[bot]"
-          git add twemoji-amazing.css || true
-          git commit -m "Update twemoji - $time" || true
-          git push origin || true
+  - name: Push emoji stylesheet to repository
+    if: |
+      github.event_name == 'workflow_dispatch' &&
+      github.repository == 'SebastianAigner/twemoji-amazing'
+    run: |
+      time=`date '+%Y-%m-%d %H:%M:%S %A (%Z %z)'`
+      git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      git config --local user.name  "github-actions[bot]"
+      git add twemoji-amazing.css || true
+      git commit -m "Update twemoji - $time" || true
+      git push origin || true
